@@ -20,6 +20,8 @@ if not DATABASE_URL:
     DATABASE_URL= "postgresql+psycopg2://lovecare_user:Py20041028@10.69.xxx.xxx:5432/lovecare"
 
 engine = create_engine(DATABASE_URL, pool_pre_ping=True)
+
+
 SessionLocal = sessionmaker(bind=engine, autoflush=False, autocommit=False)
 
 
@@ -100,9 +102,11 @@ app = FastAPI()
 
 from fastapi.middleware.cors import CORSMiddleware
 
+from fastapi.middleware.cors import CORSMiddleware
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origin_regex=r"^http://(localhost|127\.0\.0\.1|10\.\d+\.\d+\.\d+):3001$",
+    allow_origin_regex=r"^http://(localhost|127\.0\.0\.1|10\.\d+\.\d+\.\d+|192\.168\.\d+\.\d+):3001$",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
